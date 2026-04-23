@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { CalendarDays, FileText, Stethoscope, Users } from 'lucide-react';
 import StatCard from '../components/StatCard';
 import { useAuth } from '../context/AuthContext';
 import { dashboardAPI } from '../services/api';
@@ -37,13 +39,33 @@ const DashboardPage = () => {
     return <div className="card">Loading dashboard...</div>;
   }
 
+  const roleLabel = user.role[0].toUpperCase() + user.role.slice(1);
+
   return (
-    <div className="space-y-6">
-      <div>
-        <p className="text-xs uppercase tracking-[0.2em]" style={{ color: 'var(--text-soft)' }}>
+    <div className="page-stack">
+      <div className="page-hero">
+        <p className="text-xs uppercase tracking-[0.22em]" style={{ color: 'var(--text-soft)' }}>
           Role-based dashboard
         </p>
-        <h2 className="text-3xl">{user.role[0].toUpperCase() + user.role.slice(1)} Overview</h2>
+        <h2 className="mt-2 text-3xl sm:text-4xl">{roleLabel} Command Center</h2>
+        <p className="mt-2 max-w-2xl text-sm md:text-base" style={{ color: 'var(--text-soft)' }}>
+          Monitor daily operations, track care workflows, and jump quickly to high-impact actions.
+        </p>
+
+        <div className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+          <Link className="rounded-xl border px-3 py-2.5 text-sm font-semibold transition hover:bg-[var(--bg-soft)]" style={{ borderColor: 'var(--border)' }} to="/app/patients">
+            Manage Patients
+          </Link>
+          <Link className="rounded-xl border px-3 py-2.5 text-sm font-semibold transition hover:bg-[var(--bg-soft)]" style={{ borderColor: 'var(--border)' }} to="/app/appointments">
+            Open Appointments
+          </Link>
+          <Link className="rounded-xl border px-3 py-2.5 text-sm font-semibold transition hover:bg-[var(--bg-soft)]" style={{ borderColor: 'var(--border)' }} to="/app/records">
+            Medical Records
+          </Link>
+          <Link className="rounded-xl border px-3 py-2.5 text-sm font-semibold transition hover:bg-[var(--bg-soft)]" style={{ borderColor: 'var(--border)' }} to="/app/billing">
+            Billing Desk
+          </Link>
+        </div>
       </div>
 
       {user.role === 'admin' ? (
@@ -58,7 +80,7 @@ const DashboardPage = () => {
       {user.role === 'doctor' ? (
         <div className="space-y-4">
           <StatCard label="Today's Appointments" value={data.totalTodayAppointments || 0} />
-          <div className="card overflow-auto">
+          <div className="table-wrap">
             <table className="min-w-full text-sm">
               <thead>
                 <tr>
@@ -106,6 +128,48 @@ const DashboardPage = () => {
           </div>
         </div>
       ) : null}
+
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="card">
+          <div className="mb-2 inline-flex rounded-xl bg-[var(--bg-soft)] p-2">
+            <Users size={16} />
+          </div>
+          <h3 className="text-lg">Patient Registry</h3>
+          <p className="mt-1 text-sm" style={{ color: 'var(--text-soft)' }}>
+            Centralized profiles, searchable patient data, and history exports.
+          </p>
+        </div>
+
+        <div className="card">
+          <div className="mb-2 inline-flex rounded-xl bg-[var(--bg-soft)] p-2">
+            <Stethoscope size={16} />
+          </div>
+          <h3 className="text-lg">Doctor Workbench</h3>
+          <p className="mt-1 text-sm" style={{ color: 'var(--text-soft)' }}>
+            Clinical schedules, diagnosis notes, and treatment continuity.
+          </p>
+        </div>
+
+        <div className="card">
+          <div className="mb-2 inline-flex rounded-xl bg-[var(--bg-soft)] p-2">
+            <CalendarDays size={16} />
+          </div>
+          <h3 className="text-lg">Appointment Flow</h3>
+          <p className="mt-1 text-sm" style={{ color: 'var(--text-soft)' }}>
+            Track pending, approved, completed, and cancelled visits in real time.
+          </p>
+        </div>
+
+        <div className="card">
+          <div className="mb-2 inline-flex rounded-xl bg-[var(--bg-soft)] p-2">
+            <FileText size={16} />
+          </div>
+          <h3 className="text-lg">Clinical Documents</h3>
+          <p className="mt-1 text-sm" style={{ color: 'var(--text-soft)' }}>
+            Lab reports and prescriptions uploaded to secure cloud storage.
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

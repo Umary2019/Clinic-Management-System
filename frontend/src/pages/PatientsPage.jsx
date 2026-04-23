@@ -88,9 +88,12 @@ const PatientsPage = () => {
   };
 
   return (
-    <div className="grid gap-6 xl:grid-cols-[360px_1fr]">
+    <div className="grid gap-6 xl:grid-cols-[minmax(280px,360px)_1fr]">
       <div className="card">
-        <h3 className="text-2xl">{selectedPatient ? 'Edit Patient' : 'Add Patient'}</h3>
+        <div className="section-head">
+          <h3 className="text-2xl">{selectedPatient ? 'Edit Patient' : 'Add Patient'}</h3>
+          <span className="badge">Patient Form</span>
+        </div>
         <form className="mt-4 space-y-3" onSubmit={handleSubmit}>
           <input className="input" placeholder="Name" value={form.name} onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))} required />
           <input className="input" type="number" placeholder="Age" value={form.age} onChange={(e) => setForm((p) => ({ ...p, age: e.target.value }))} required />
@@ -120,22 +123,25 @@ const PatientsPage = () => {
       </div>
 
       <div className="space-y-4">
-        <div className="card flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-          <h3 className="text-2xl">Patient Directory</h3>
-          <div className="flex gap-2">
+        <div className="card">
+          <div className="section-head">
+            <h3 className="text-2xl">Patient Directory</h3>
+            <span className="badge">Search</span>
+          </div>
+          <div className="mt-3 grid gap-2 sm:grid-cols-[1fr_auto]">
             <input
               className="input"
               placeholder="Search by name or phone"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <button className="btn-primary" onClick={() => fetchPatients(1, search)}>
+            <button className="btn-primary w-full sm:w-auto" onClick={() => fetchPatients(1, search)}>
               Search
             </button>
           </div>
         </div>
 
-        <div className="card overflow-auto">
+        <div className="table-wrap">
           <table className="min-w-full text-sm">
             <thead>
               <tr>
@@ -172,7 +178,7 @@ const PatientsPage = () => {
           </table>
         </div>
 
-        <div className="flex items-center justify-between">
+        <div className="surface-muted flex flex-wrap items-center justify-between gap-3 px-3 py-2.5">
           <button
             className="btn-secondary"
             disabled={pagination.page <= 1}

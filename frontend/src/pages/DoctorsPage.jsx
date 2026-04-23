@@ -41,10 +41,13 @@ const DoctorsPage = () => {
   };
 
   return (
-    <div className="grid gap-6 xl:grid-cols-[340px_1fr]">
+    <div className="grid gap-6 xl:grid-cols-[minmax(270px,340px)_1fr]">
       {(user.role === 'admin') ? (
         <div className="card">
-          <h3 className="text-2xl">Add Doctor</h3>
+          <div className="section-head">
+            <h3 className="text-2xl">Add Doctor</h3>
+            <span className="badge">Admin</span>
+          </div>
           <form className="mt-4 space-y-3" onSubmit={handleCreate}>
             <input className="input" placeholder="Doctor Name" value={form.name} onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))} required />
             <input className="input" placeholder="Specialization" value={form.specialization} onChange={(e) => setForm((p) => ({ ...p, specialization: e.target.value }))} required />
@@ -54,9 +57,13 @@ const DoctorsPage = () => {
         </div>
       ) : null}
 
-      <div className="card overflow-auto">
-        <h3 className="text-2xl">Doctor List</h3>
-        <table className="mt-4 min-w-full text-sm">
+      <div className="card">
+        <div className="section-head">
+          <h3 className="text-2xl">Doctor List</h3>
+          <span className="badge">Live Roster</span>
+        </div>
+        <div className="table-wrap mt-4">
+          <table className="min-w-full text-sm">
           <thead>
             <tr>
               <th className="px-2 py-2 text-left">Name</th>
@@ -73,7 +80,8 @@ const DoctorsPage = () => {
               </tr>
             ))}
           </tbody>
-        </table>
+          </table>
+        </div>
       </div>
     </div>
   );

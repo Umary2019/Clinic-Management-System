@@ -88,9 +88,12 @@ const MedicalRecordsPage = () => {
   };
 
   return (
-    <div className="grid gap-6 xl:grid-cols-[390px_1fr]">
+    <div className="grid gap-6 xl:grid-cols-[minmax(290px,390px)_1fr]">
       <div className="card">
-        <h3 className="text-2xl">Add Medical Record</h3>
+        <div className="section-head">
+          <h3 className="text-2xl">Add Medical Record</h3>
+          <span className="badge">Clinical Notes</span>
+        </div>
         <form className="mt-4 space-y-3" onSubmit={submitRecord}>
           <select className="input" value={form.patientId} onChange={(e) => setForm((p) => ({ ...p, patientId: e.target.value }))} required>
             <option value="">Select Patient</option>
@@ -134,7 +137,7 @@ const MedicalRecordsPage = () => {
       </div>
 
       <div className="space-y-4">
-        <div className="card flex gap-2">
+        <div className="card grid gap-2 sm:grid-cols-[1fr_auto]">
           <select className="input" value={patientFilter} onChange={(e) => setPatientFilter(e.target.value)}>
             <option value="">Select patient to view records</option>
             {patients.map((patient) => (
@@ -143,12 +146,12 @@ const MedicalRecordsPage = () => {
               </option>
             ))}
           </select>
-          <button className="btn-primary" onClick={loadRecords}>
+          <button className="btn-primary w-full sm:w-auto" onClick={loadRecords}>
             Load
           </button>
         </div>
 
-        <div className="card space-y-3">
+        <div className="card space-y-3 p-3 sm:p-4">
           {records.map((record) => (
             <div key={record._id} className="rounded-xl border p-3" style={{ borderColor: 'var(--border)' }}>
               <p className="font-semibold">Diagnosis: {record.diagnosis}</p>

@@ -62,9 +62,12 @@ const AppointmentsPage = () => {
 
   return (
     <div className="space-y-6">
-      <div className="grid gap-6 xl:grid-cols-[360px_1fr]">
+      <div className="grid gap-6 xl:grid-cols-[minmax(280px,360px)_1fr]">
         <div className="card">
-          <h3 className="text-2xl">Book Appointment</h3>
+          <div className="section-head">
+            <h3 className="text-2xl">Book Appointment</h3>
+            <span className="badge">Scheduler</span>
+          </div>
           <form className="mt-4 space-y-3" onSubmit={createAppointment}>
             <select className="input" value={form.patientId} onChange={(e) => setForm((p) => ({ ...p, patientId: e.target.value }))} required>
               <option value="">Select Patient</option>
@@ -94,7 +97,7 @@ const AppointmentsPage = () => {
         </div>
 
         <div className="space-y-4">
-          <div className="card grid gap-3 md:grid-cols-4">
+          <div className="card grid gap-3 md:grid-cols-2 xl:grid-cols-4">
             <input className="input" type="date" value={filters.date} onChange={(e) => setFilters((p) => ({ ...p, date: e.target.value }))} />
             <select className="input" value={filters.doctorId} onChange={(e) => setFilters((p) => ({ ...p, doctorId: e.target.value }))}>
               <option value="">All Doctors</option>
@@ -112,12 +115,12 @@ const AppointmentsPage = () => {
                 </option>
               ))}
             </select>
-            <button className="btn-primary" onClick={() => loadAppointments(1)}>
+            <button className="btn-primary md:col-span-2 xl:col-span-1" onClick={() => loadAppointments(1)}>
               Apply Filters
             </button>
           </div>
 
-          <div className="card overflow-auto">
+          <div className="table-wrap">
             <table className="min-w-full text-sm">
               <thead>
                 <tr>
@@ -151,7 +154,7 @@ const AppointmentsPage = () => {
             </table>
           </div>
 
-          <div className="flex items-center justify-between">
+          <div className="surface-muted flex flex-wrap items-center justify-between gap-3 px-3 py-2.5">
             <button className="btn-secondary" disabled={pagination.page <= 1} onClick={() => loadAppointments(pagination.page - 1)}>
               Prev
             </button>

@@ -79,9 +79,12 @@ const BillingPage = () => {
   };
 
   return (
-    <div className="grid gap-6 xl:grid-cols-[380px_1fr]">
+    <div className="grid gap-6 xl:grid-cols-[minmax(280px,380px)_1fr]">
       <div className="card">
-        <h3 className="text-2xl">Generate Bill</h3>
+        <div className="section-head">
+          <h3 className="text-2xl">Generate Bill</h3>
+          <span className="badge">Billing Desk</span>
+        </div>
         <form className="mt-4 space-y-3" onSubmit={submitBill}>
           <select className="input" value={form.patientId} onChange={(e) => setForm((p) => ({ ...p, patientId: e.target.value }))} required>
             <option value="">Select Patient</option>
@@ -120,18 +123,18 @@ const BillingPage = () => {
       </div>
 
       <div className="space-y-4">
-        <div className="card flex gap-2">
+        <div className="card grid gap-2 sm:grid-cols-[1fr_auto]">
           <select className="input" value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
             <option value="">All Statuses</option>
             <option value="paid">Paid</option>
             <option value="unpaid">Unpaid</option>
           </select>
-          <button className="btn-primary" onClick={loadBills}>
+          <button className="btn-primary w-full sm:w-auto" onClick={loadBills}>
             Filter
           </button>
         </div>
 
-        <div className="card overflow-auto">
+        <div className="table-wrap">
           <table className="min-w-full text-sm">
             <thead>
               <tr>
