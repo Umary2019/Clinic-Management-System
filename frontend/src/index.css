@@ -1,38 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Serif+4:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap');
 @import 'tailwindcss';
 
 :root {
-  --bg: #f4f6f2;
+  --bg: #f5f7fb;
   --bg-panel: #ffffff;
-  --bg-soft: #e6ece2;
-  --bg-strong: #dfe9dd;
-  --text: #1c2a1f;
-  --text-soft: #4f6354;
-  --accent: #0f766e;
-  --accent-strong: #115e59;
-  --accent-soft: #ccfbf1;
+  --bg-soft: #e8eef6;
+  --bg-strong: #dce6f2;
+  --text: #102033;
+  --text-soft: #53657d;
+  --accent: #0f6b8b;
+  --accent-strong: #0b4f6c;
+  --accent-soft: #d9eff9;
   --warn: #f59e0b;
   --danger: #c2410c;
-  --border: #c7d4c8;
-  --shadow-soft: 0 14px 40px rgba(16, 24, 20, 0.08);
+  --border: #cfd9e7;
+  --shadow-soft: 0 14px 40px rgba(15, 23, 42, 0.08);
   --radius-lg: 22px;
   --radius-md: 16px;
 }
 
 .dark {
-  --bg: #101715;
-  --bg-panel: #17211e;
-  --bg-soft: #24322d;
-  --bg-strong: #30413a;
-  --text: #edf8f0;
-  --text-soft: #afc3b4;
-  --accent: #2dd4bf;
-  --accent-strong: #14b8a6;
-  --accent-soft: #173d38;
+  --bg: #0b1220;
+  --bg-panel: #111b2d;
+  --bg-soft: #17243a;
+  --bg-strong: #20314a;
+  --text: #eef4fb;
+  --text-soft: #9fb0c5;
+  --accent: #38bdf8;
+  --accent-strong: #0ea5e9;
+  --accent-soft: #12263b;
   --warn: #fbbf24;
   --danger: #fdba74;
-  --border: #395047;
-  --shadow-soft: 0 16px 44px rgba(0, 0, 0, 0.35);
+  --border: #27405d;
+  --shadow-soft: 0 16px 44px rgba(0, 0, 0, 0.34);
 }
 
 * {
@@ -41,10 +41,10 @@
 
 body {
   margin: 0;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Manrope', sans-serif;
   background:
-    radial-gradient(circle at 5% 0%, rgba(45, 212, 191, 0.25), transparent 32%),
-    radial-gradient(circle at 95% 100%, rgba(245, 158, 11, 0.2), transparent 30%),
+    radial-gradient(circle at 6% 0%, rgba(15, 107, 139, 0.13), transparent 28%),
+    radial-gradient(circle at 96% 100%, rgba(56, 189, 248, 0.12), transparent 30%),
     var(--bg);
   color: var(--text);
   min-height: 100vh;
@@ -59,23 +59,38 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: 'Source Serif 4', serif;
+  font-family: 'Sora', sans-serif;
+  letter-spacing: -0.04em;
 }
 
 .input {
-  @apply w-full rounded-xl border px-3 py-2.5 text-sm outline-none transition;
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  padding: 0.625rem 0.75rem;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
   border-color: var(--border);
   background: var(--bg-panel);
   color: var(--text);
 }
 
 .input:focus {
-  box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.2);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.18);
   border-color: var(--accent);
 }
 
 .btn-primary {
-  @apply inline-flex items-center justify-center rounded-xl px-4 py-2.5 text-sm font-semibold text-white transition;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #fff;
+  transition: background-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
   background: var(--accent);
 }
 
@@ -84,7 +99,15 @@ h4 {
 }
 
 .btn-secondary {
-  @apply inline-flex items-center justify-center rounded-xl border px-4 py-2.5 text-sm font-semibold transition;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: background-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
   border-color: var(--border);
   color: var(--text);
 }
@@ -94,7 +117,9 @@ h4 {
 }
 
 .card {
-  @apply rounded-2xl border p-4 shadow-sm;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  padding: 1rem;
   border-color: var(--border);
   background: var(--bg-panel);
   box-shadow: var(--shadow-soft);

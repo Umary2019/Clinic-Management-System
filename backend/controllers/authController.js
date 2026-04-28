@@ -1,10 +1,12 @@
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
+const Patient = require('../models/Patient');
 const generateToken = require('../utils/generateToken');
 
 const register = async (req, res, next) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password, role, age, gender, phone, address } = req.body;
+    const actualRole = role || 'patient';
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -17,8 +19,24 @@ const register = async (req, res, next) => {
       name,
       email,
       password: hashedPassword,
-      role,
+      role: actualRole,
     });
+
+    if (actualRole === 'patient') {
+      try {
+        await Patient.create({
+          name,
+          age,
+          gender,
+          phone,
+          address,
+          createdBy: user._id,
+        });
+      } catch (patientError) {
+        await User.deleteOne({ _id: user._id });
+        throw patientError;
+      }
+    }
 
     const token = generateToken({ id: user._id, role: user.role });
 

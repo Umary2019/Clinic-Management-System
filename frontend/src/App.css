@@ -182,3 +182,210 @@
     border-right-color: var(--border);
   }
 }
+
+.landing-root {
+  position: relative;
+  isolation: isolate;
+}
+
+.landing-root::before,
+.landing-root::after {
+  content: '';
+  position: fixed;
+  inset: auto;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(18px);
+  opacity: 0.55;
+}
+
+.landing-root::before {
+  top: 8rem;
+  right: -4rem;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.2), transparent 70%);
+}
+
+.landing-root::after {
+  left: -5rem;
+  bottom: 6rem;
+  width: 22rem;
+  height: 22rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(15, 107, 139, 0.18), transparent 68%);
+}
+
+.landing-nav {
+  backdrop-filter: blur(18px);
+  background: color-mix(in srgb, var(--bg-panel) 92%, transparent);
+}
+
+.landing-mark {
+  background: linear-gradient(135deg, #0f6b8b, #38bdf8 55%, #0b4f6c);
+}
+
+.landing-hero {
+  overflow: hidden;
+}
+
+.landing-hero::before {
+  content: '';
+  position: absolute;
+  right: -6rem;
+  top: -7rem;
+  width: 26rem;
+  height: 26rem;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle, rgba(56, 189, 248, 0.14), transparent 58%),
+    radial-gradient(circle, rgba(15, 107, 139, 0.1), transparent 64%);
+}
+
+.landing-hero::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 auto;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(15, 23, 42, 0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(15, 23, 42, 0.025) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent 82%);
+  pointer-events: none;
+}
+
+.landing-badge {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent-strong) 16%, transparent);
+  background: color-mix(in srgb, var(--accent-soft) 90%, white);
+  color: color-mix(in srgb, var(--accent-strong) 88%, black);
+}
+
+.landing-cta {
+  box-shadow: 0 18px 40px rgba(15, 107, 139, 0.16);
+}
+
+.landing-ghost {
+  background: color-mix(in srgb, var(--bg-panel) 94%, transparent);
+}
+
+.landing-stat,
+.landing-pill,
+.landing-card-panel,
+.landing-dashboard {
+  backdrop-filter: blur(12px);
+}
+
+.landing-stat {
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.landing-stat:hover,
+.landing-feature:hover {
+  transform: translateY(-3px);
+}
+
+.landing-feature {
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.landing-dashboard {
+  position: relative;
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--bg-panel) 98%, white), color-mix(in srgb, var(--bg-panel) 94%, var(--bg-soft))),
+    var(--bg-panel);
+}
+
+.landing-dashboard::before {
+  content: '';
+  position: absolute;
+  inset: 1rem;
+  border-radius: 22px;
+  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  pointer-events: none;
+}
+
+.landing-glow {
+  position: absolute;
+  inset: 10% 6% auto auto;
+  width: 14rem;
+  height: 14rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.16), transparent 68%);
+  filter: blur(12px);
+}
+
+.landing-card-accent {
+  background: linear-gradient(150deg, var(--accent-strong), color-mix(in srgb, var(--accent) 80%, #0f172a));
+}
+
+.landing-card-panel {
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg-panel) 98%, transparent);
+}
+
+.landing-kicker {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.landing-title {
+  max-width: 12ch;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+}
+
+.landing-copy {
+  max-width: 46rem;
+  color: color-mix(in srgb, var(--text-soft) 88%, var(--text));
+  line-height: 1.8;
+}
+
+.landing-chip {
+  border-color: color-mix(in srgb, var(--border) 88%, white);
+  background: color-mix(in srgb, var(--bg-panel) 94%, var(--bg-soft));
+}
+
+.landing-feature h3 {
+  font-size: 1.05rem;
+  letter-spacing: -0.03em;
+}
+
+.landing-section-title {
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  letter-spacing: -0.05em;
+}
+
+.landing-section-copy {
+  max-width: 58rem;
+  color: var(--text-soft);
+  line-height: 1.75;
+}
+
+.landing-feature-grid {
+  margin-top: 0.25rem;
+}
+
+.landing-feature p,
+.landing-pill,
+.landing-card-panel,
+.landing-stat {
+  line-height: 1.65;
+}
+
+@media (max-width: 768px) {
+  .landing-hero::before,
+  .landing-hero::after,
+  .landing-root::before,
+  .landing-root::after {
+    opacity: 0.28;
+  }
+}
